@@ -41,6 +41,12 @@ export default function TextForm(props) {
     }
     setCount(vowels);
   };
+
+  const handleCopy = () =>{
+    let text = document.getElementById('myBox');
+    // text.select();
+    navigator.clipboard.writeText(text.value);
+  }
   return (
     <>
       <div className="container">
@@ -65,6 +71,9 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-primary mx-2" onClick={countVowels}>
           Count Vowels
+        </button>
+        <button className="btn btn-primary" onClick={handleCopy}>
+          Copy
         </button>
       </div>
       <div className="container my-3">
