@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`} style={{ boxShadow: ' rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;' }}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,10 @@ export default function Navbar(props) {
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-primary" type="submit">Search</button>
                     </form> */}
+                    <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'} `} >
+                        <input className="form-check-input" style={{ cursor: "pointer" }} type="checkbox" id="flexSwitchCheckDefault" onClick={props.toggleMode} />
+                        <label className="form-check-labe" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -30,11 +34,11 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired, // to make it compulasary 
+    title: PropTypes.string.isRequired, // to make it compulasary
     aboutText: PropTypes.string,
 } // set default variable type for props
 
-Navbar.defaultProps ={
+Navbar.defaultProps = {
     title: "Hey wassup",
     aboutText: "Tell me about"
 }
