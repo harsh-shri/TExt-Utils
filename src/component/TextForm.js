@@ -6,10 +6,13 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toLocaleUpperCase();
     setText(newText);
+    props.showAlert("Text converted to Upper case", "success");
+
   };
   const handleLoClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Text converted to lower case", "success");
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -17,6 +20,7 @@ export default function TextForm(props) {
   const clearText = () => {
     setText("");
     setCount("");
+    props.showAlert("Text feild is empty", "success")
   };
   const countVowels = () => {
     let vowels = 0;
@@ -47,6 +51,8 @@ export default function TextForm(props) {
     let text = document.getElementById('myBox');
     // text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text copied to clipboard", "success");
+
   }
   return (
     <>
