@@ -23,17 +23,19 @@ function App() {
       setMode('light')
       document.body.style.backgroundColor = '#fff';
       showAlert("Light mode has been enabled", "info")
+      document.title = "TExt-Utils | Mordern Txt Utility";
 
     }
     else {
       setMode('dark')
       document.body.style.backgroundColor = '#201f1f'
       showAlert("Drak mode has been enabled", "dark")
+      document.title = "TExt-Utils | Dark Mode";
     }
   }
   return (
     <>
-      <Navbar title="My-App" aboutText="About My-app" mode={mode} toggleMode={toggleMode} />
+      <Navbar title="TExt-Utils" aboutText="About" mode={mode} toggleMode={toggleMode} />
       <Alert alert = {alert} />
       <div className="container my-3">
         <TextForm showAlert ={showAlert} heading="Enter the text to analyze" mode ={mode}/>
