@@ -1,11 +1,11 @@
 import Navbar from "./component/Navbar";
 import "./App.css";
 import TextForm from "./component/TextForm";
-// import About from "./component/About";
+import About from "./component/About";
 import { useState } from "react";
 import { Alert } from "./component/Alert";
 
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
