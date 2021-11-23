@@ -63,10 +63,12 @@ export default function TextForm(props) {
   };
 
   const handleCopy = () => {
-    let text = document.getElementById("myBox");
+    // let text = document.getElementById("myBox");
     if (text.value !== "") {
-      navigator.clipboard.writeText(text.value);
+      // text.select(); // highlight text (with blue background on clicking copy button)
+      navigator.clipboard.writeText(text); // navigator api does not need text to selsct first then copy as above
       props.showAlert("Text copied to clipboard", "success");
+      // document.getSelection().removeAllRanges(); // to remove text highlight(background blue) on clicking copy button.
     } else {
       props.showAlert("Nothing to copy in the textbox", "danger");
     }
@@ -78,7 +80,7 @@ export default function TextForm(props) {
         className="container"
         style={{ color: props.mode === "light" ? "black" : "#fff" }}
       >
-        <h1>{props.heading}</h1>
+        <h2 className ="mb-3">{props.heading}</h2>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -92,19 +94,19 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={handleUpClick}>
+        <button disabled ={text.length===0} className="btn btn-primary my-1 mx-2" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button disabled ={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary" onClick={clearText}>
+        <button disabled ={text.length===0} className="btn btn-primary my-1" onClick={clearText}>
           Clear Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={countVowels}>
+        <button disabled ={text.length===0} className="btn btn-primary mx-2 my-1" onClick={countVowels}>
           Count Vowels
         </button>
-        <button className="btn btn-primary" onClick={handleCopy}>
+        <button disabled ={text.length===0} className="btn btn-primary my-1" onClick={handleCopy}>
           Copy
         </button>
       </div>
@@ -115,7 +117,7 @@ export default function TextForm(props) {
         <h2>Your text summary</h2>
         <p>
           {" "}
-          <b> {text.split(" ").filter((element)=>{return element.length !==0}).length} </b>words and <b> {text.length} </b>{" "}
+          <b> {text.split(/\s+/).filter((element)=>{return element.length !==0}).length} </b>words and <b> {text.length} </b>{" "}
           character{" "}
         </p>
         <p>
@@ -126,7 +128,7 @@ export default function TextForm(props) {
           <b>{count}</b> Vowels{" "}
         </p>
         <h3>Preview</h3>
-        <p>{text.length > 0 ? text : "Enter something to preview here"}</p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </>
   );
